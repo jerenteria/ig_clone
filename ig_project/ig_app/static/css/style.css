@@ -1,0 +1,21 @@
+.title {
+    padding: 150px;
+    text-align: center;
+    font-family: proxima;
+}
+
+.register {
+    display: inline-block;
+    float: left;
+}
+
+.login {
+    margin-left: 100px;
+    padding-bottom: 350px;
+    float: right;
+}
+
+.footer {
+    padding-top: 350px;
+    padding-left: 755px;
+}
