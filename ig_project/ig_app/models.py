@@ -3,16 +3,11 @@ import re
 
 class UserManager(models.Manager):
     def validator(self, postdata):
-        email_check=re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
         errors={}
-        if len(postdata['l_n']) < 2:
-            errors['f_n'] = "First name must be longer than 2 characters"
-        if not email_check.match(postdata['email']):
-            errors['email'] = "Email must be valid format"
+        if len(postdata['user_name']) < 2:
+            errors['user_name'] = "User Name must be longer than 2 characters"
         if len(postdata['pw']) < 8:
             errors['pw'] ="Password must be at least 8 characters long"
-        if postdata['pw'] != postdata['conf_pw']:
-            errors['conf_pw'] = "Password must match"
         return errors
 
 
@@ -20,6 +15,8 @@ class UserManager(models.Manager):
 class User(models.Model):
     user_name = models.CharField(max_length=225)
     password = models.CharField(max_length=225)
+    post = models.ImageField(null=False, blank=False, upload_to="images/")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = UserManager()
+
