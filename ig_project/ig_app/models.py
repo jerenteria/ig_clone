@@ -15,8 +15,10 @@ class UserManager(models.Manager):
 class User(models.Model):
     user_name = models.CharField(max_length=225)
     password = models.CharField(max_length=225)
-    post = models.ImageField(null=False, blank=False, upload_to="images/")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = UserManager()
+
+class Post(models.Model):
+    post = models.ImageField(null=False, blank=False, upload_to="images/")
 

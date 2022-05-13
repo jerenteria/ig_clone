@@ -7,27 +7,17 @@
     <link rel="stylesheet" href="static/css/style.css">
 </head>
 <body>
+  {% load static %}
     <span class="logout"><a href="/logout">Logout</a></span>
     <h1 class="home-header">Welcome to Doggram {{request.session.user_handle}}</h1>
 
     <h2 class="my-4">Upload Photo</h2>
-    <form method="post" enctype="multipart/form-data">
+    <form action= "" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
-          <input type="file" name="upload" accept=".doc, .docx, .pdf, .txt">
-          <br>
-          <button class="btn btn-dark my-4" type="submit">Upload</button>
+      {{ form.as_p }}
+      <input type="submit" value="submit">
     </form>
 
-    <h2 class="my-4">Pic</h2>
-    <div class="row">
-      {% if uploaded_file_url %}
-      <div class="col-lg-4 col-md-6 col-sm-12 pb-4">
-        <p>Uploaded to:<a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
-        <a class="btn btn-dark my-4" href="/">Return to Homepage</a>
-      {% else %}
-      <p>No movies scripts added.</p>
-      {% endif %}
-    </div>
 
 </body>
 </html>
