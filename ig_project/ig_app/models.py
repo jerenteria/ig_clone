@@ -20,5 +20,5 @@ class User(models.Model):
     objects = UserManager()
 
 class Post(models.Model):
-    post = models.ImageField(null=False, blank=False, upload_to="images/")
+    post = models.ImageField(null=False, blank=False, upload_to="images")
 
