@@ -44,6 +44,8 @@ def login(request):
         logged_user=User.objects.filter(user_name=request.POST['user_name'])
         if logged_user:
             logged_user=logged_user[0]
+            request.session['user_id']=logged_user.id
+            request.session['user_handle']=f"{logged_user.user_name}"
         return redirect('/home')
     return redirect('/')
 
