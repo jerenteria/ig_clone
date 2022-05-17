@@ -3,8 +3,6 @@ from django.contrib import messages
 from .models import *
 import bcrypt
 from django.core.files.storage import FileSystemStorage
-from django.conf import settings
-from .forms import *
 
 # Create your views here.
 
@@ -50,18 +48,14 @@ def login(request):
         return redirect('/home')
     return redirect('/')
 
-def image_upload_view(request):
-    """Process images uploaded by users"""
-    if request.method == 'POST':
-        form = ImageForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            # Get the current instance object to display in the template
-            img_obj = form.instance
-            return render(request, 'index.html', {'form': form, 'img_obj': img_obj})
-    else:
-        form = ImageForm()
-    return render(request, 'home.html', {'form': form})
+def upload(request):
+    if request.method == 'POST' and request.FILES['upload']:
+        upload = request.FILES['upload']
+        fss = FileSystemStorage()
+        file = fss.save(upload.name, upload)
+        file_url = fss.url(file)
+        return render(request, 'home.html', {'file_url': file_url})
+    return render(request, 'home.html')
 
 def terms_conditions(request):
     return render(request, "terms_conditions.html")
