@@ -9,12 +9,11 @@
 <body>
   {% load static %}
     <span class="logout"><a href="/logout">Logout</a></span>
-    <h1 class="home-header">Welcome to Doggram {{request.session.user_handle}}</h1>
 
     <div class="container">
 
       <!--Simple Form-->
-      <h2 class="my-4">Add a new movie poster</h2>
+      <h2 class="my-4">Add a new picture to your timeline!</h2>
       <form method="POST" action="/upload" enctype="multipart/form-data">
         {% csrf_token %}
             <input type="file" name="upload" accept="image/*">
@@ -22,14 +21,14 @@
             <button class="btn btn-dark my-4" type="submit">Submit</button>
       </form>
 
+      <h1 class="home-header">Welcome to Doggram {{request.session.user_handle}}</h1>
+
       <!--See Image Uploaded-->
-      <h2 class="my-4">Recent Posts</h2>
+      <h2 class="recent-pics-header">Recent Posts</h2>
       <div class="row">
         {% if file_url %}
         <div class="posts">
-          <img src="{{ file_url }}" class="img-fluid" width="450px">
-          <br>
-          <a class="btn btn-dark my-4" href="/">Return to Homepage</a>
+          <img src="{{ file_url }}" class="img-fluid">
         {% else %}
         <p>No movies posters added.</p>
         {% endif %}
