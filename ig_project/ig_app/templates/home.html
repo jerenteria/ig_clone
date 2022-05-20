@@ -12,7 +12,7 @@
 
     <div class="container">
 
-      <!--Simple Form-->
+      <!--Simple Form enctype is what allos for image upload-->
       <h2 class="my-4">Add a new picture to your timeline!</h2>
       <form method="POST" action="/upload" enctype="multipart/form-data">
         {% csrf_token %}
