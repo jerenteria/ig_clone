@@ -1,0 +1,1 @@
+web: gunicorn ig_project.wsgi
