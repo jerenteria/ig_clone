@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-v15&j7p00%r&3td3s4j$*rlcv9@haz()^n$a9)bx3($d#zoc(7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://juan-ig-clone.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ["juan-ig-clone.herokuapp.com", "127.0.0.1"]
 
 
 # Application definition
@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'ig_project.urls'
