@@ -21,4 +21,8 @@ class User(models.Model):
 
 class Post(models.Model):
     post = models.ImageField(null=False, blank=False, upload_to="images")
+    likes = models.ManyToManyField(User, related_name="uploaded_pic")
+
+    def total_likes(self):
+        return self.likes.count()
 

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .models import *
 import bcrypt
@@ -56,6 +56,14 @@ def upload(request):
         file_url = fss.url(file)
         return render(request, 'home.html', {'file_url': file_url})
     return render(request, 'home.html')
+
+def like_post(request):
+    post = get_object_or_404(Post, id=request.POST.get('post_id'))
+    post.likes.add(request.user)
+    context = [
+        ''
+    ]
+    return render (request, "home.html")
 
 def terms_conditions(request):
     return render(request, "terms_conditions.html")

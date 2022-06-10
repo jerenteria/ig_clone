@@ -29,9 +29,13 @@
         {% if file_url %}
         <div class="posts">
           <img src="{{ file_url }}" class="img-fluid">
-        {% else %}
+          {% else %}
         <p>You have not uploaded anything yet.</p>
         {% endif %}
+        <button type="submit", 
+        name="post_id", 
+        value="{{ post.id }}", 
+        class="btn btn-primary">Like</button>
       </div>
     </div>
 </body>

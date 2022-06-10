@@ -8,4 +8,5 @@ urlpatterns = [
     path('login', views.login),
     path('terms_conditions', views.terms_conditions),
     path('upload', views.upload),
+    path('like', views.like_post),
 ]
