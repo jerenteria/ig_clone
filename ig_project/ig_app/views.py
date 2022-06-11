@@ -63,9 +63,8 @@ def like_post(request):
     context = [
         ''
     ]
-    return render (request, "home.html")
+    return redirect (request, "home.html", context)
 
 def terms_conditions(request):
     return render(request, "terms_conditions.html")
 
-    
