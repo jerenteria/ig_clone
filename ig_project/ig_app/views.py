@@ -67,3 +67,5 @@ def like_post(request):
 
 def terms_conditions(request):
     return render(request, "terms_conditions.html")
+
+    
