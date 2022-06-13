@@ -21,10 +21,11 @@ class User(models.Model):
 
 class Post(models.Model):
     post = models.ImageField(null=False, blank=False, upload_to="images")
-    liked = models.ManyToManyField(User, default=None, blank=True, related_name='liked')
+    liked = models.ManyToManyField(User, default=None, blank=True)
 
+    @property
     def total_likes(self):
-        return self.likes.count()
+        return self.liked.all().count()
 
 
 # choices in value for Like model
@@ -37,4 +38,7 @@ class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     value = models.CharField(choices=LIKE_CHOICES, default='Like', max_length=100)
+
+    def __str__(self):
+        return str(self.post)
 

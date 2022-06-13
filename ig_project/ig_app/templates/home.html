@@ -24,12 +24,13 @@
       <h1 class="home-header">Welcome to CloneGram! {{request.session.user_handle}}</h1>
 
       <!--See Image Uploaded-->
+      {% block content %}
       <h2 class="recent-pics-header">Recent Posts</h2>
       <div class="row">
         {% if file_url %}
         <div class="posts">
           <img src="{{ file_url }}" class="img-fluid">
-          <form action="/like" method="POST">
+          <form action="/like" method="POST" class="ui form">
             {% csrf_token %}
             <input type="hidden" name="post_id" value="{{ obj.id }}">
             {% if user not in obj.liked.all %}
@@ -45,5 +46,6 @@
         {% endif %}
       </div>
     </div>
+    {% endblock content %}
 </body>
 </html>

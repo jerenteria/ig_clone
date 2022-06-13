@@ -58,12 +58,25 @@ def upload(request):
     return render(request, 'home.html')
 
 def like_post(request):
-    post = get_object_or_404(Post, id=request.POST.get('post_id'))
-    post.likes.add(request.user)
-    context = [
-        ''
-    ]
-    return redirect (request, "home.html", context)
+    user = request.user
+    if request.method == 'POST':
+        post_id = request.POST.get('post_id')
+        post_obj = Post.objects.get(id=post_id)
+
+        if user in post_obj.liked.all():
+            post_obj.liked.remove(user)
+        else:
+            post_obj.liked.add(user)
+
+        like, created = Like.object.get_or_create(user=user, post_id=post_id)
+
+        if not created:
+            if like.value == 'Like':
+                like.value == 'Unlike'
+            else:
+                like.value = 'Like'
+        like.save()
+    return redirect (request, "home.html")
 
 def terms_conditions(request):
     return render(request, "terms_conditions.html")
